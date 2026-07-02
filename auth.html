@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>KidSense</title>
+  <style>
+    :root { --blue:#2F6BFF; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+      background:#f2f2f7; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; padding:16px; }
+    .card { width:100%; max-width:440px; background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 1px 6px rgba(0,0,0,.08); }
+    .header { background:linear-gradient(135deg,#4F8BFF,#1F5BE0); padding:28px; text-align:center; }
+    .header .name { font-size:24px; font-weight:700; color:#fff; letter-spacing:-.3px; }
+    .header .tag { font-size:13px; color:#dce8ff; margin-top:4px; }
+    .body { padding:32px; text-align:center; }
+    h1 { font-size:21px; color:#1c1c1e; margin:0 0 12px; }
+    p { font-size:15px; line-height:1.5; color:#48484a; margin:0 0 16px; }
+    input { width:100%; padding:14px; font-size:16px; border:1px solid #d1d1d6; border-radius:12px; margin-bottom:12px; }
+    button { width:100%; background:var(--blue); color:#fff; border:none; font-size:16px; font-weight:600; padding:14px; border-radius:12px; cursor:pointer; }
+    button:disabled { opacity:.5; }
+    .msg { font-size:14px; margin-top:12px; }
+    .ok { color:#1a7f37; } .err { color:#d1242f; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header"><div class="name">KidSense</div><div class="tag">A shared care log for your kids</div></div>
+    <div class="body" id="content"><p>One moment…</p></div>
+  </div>
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+    const supabase = createClient(
+      'https://sxvmukqqlafkeyvhfwfq.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN4dm11a3FxbGFma2V5dmhmd2ZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2NzA2ODYsImV4cCI6MjA5ODI0NjY4Nn0.7EjTNR7wSXTu92x2nF2c-RGN6H87pLpTULBPLb7iGBI',
+      { auth: { detectSessionInUrl: true, flowType: 'implicit' } }
+    );
+    const el = document.getElementById('content');
+    const hash = new URLSearchParams(location.hash.slice(1));
+    const type = hash.get('type');
+    let done = false;
+
+    function confirmed() { done = true; el.innerHTML = '<h1>✓ Email confirmed</h1><p>Your email is verified. Open the KidSense app and sign in to get started.</p>'; }
+    function resetForm() {
+      done = true;
+      el.innerHTML = '<h1>Set a new password</h1><input id="pw" type="password" placeholder="New password" autocomplete="new-password"><button id="save">Update password</button><p class="msg" id="msg"></p>';
+      const msg = document.getElementById('msg');
+      document.getElementById('save').onclick = async () => {
+        const pw = document.getElementById('pw').value;
+        if (pw.length < 6) { msg.className = 'msg err'; msg.textContent = 'Use at least 6 characters.'; return; }
+        const { error } = await supabase.auth.updateUser({ password: pw });
+        if (error) { msg.className = 'msg err'; msg.textContent = error.message; }
+        else { msg.className = 'msg ok'; msg.textContent = '✓ Password updated — open KidSense and sign in.'; }
+      };
+    }
+    function errored() { done = true; el.innerHTML = '<h1>Link expired</h1><p>This link is no longer valid. Request a new one from the KidSense app.</p>'; }
+
+    if (hash.get('error') || type === null && location.hash === '') { /* wait for event/timeout */ }
+    supabase.auth.onAuthStateChange((event) => {
+      if (done) return;
+      if (event === 'PASSWORD_RECOVERY' || type === 'recovery') resetForm();
+      else if (event === 'SIGNED_IN' || type === 'signup' || type === 'email_change' || type === 'email') confirmed();
+    });
+    setTimeout(() => { if (done) return; if (hash.get('error')) errored(); else if (type === 'recovery') resetForm(); else confirmed(); }, 1800);
+  </script>
+</body>
+</html>
