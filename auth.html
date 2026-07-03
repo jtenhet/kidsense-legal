@@ -37,7 +37,12 @@
     );
     const el = document.getElementById('content');
     const hash = new URLSearchParams(location.hash.slice(1));
-    const type = hash.get('type');
+    const query = new URLSearchParams(location.search);
+    // Preferred: the email links here with ?token_hash=…&type=… (works even when
+    // the reset was started by the native app under PKCE — verifyOtp doesn't need
+    // the app's code-verifier). Fall back to the legacy hash/session flow.
+    const tokenHash = query.get('token_hash');
+    const type = query.get('type') || hash.get('type');
     let done = false;
 
     function confirmed() { done = true; el.innerHTML = '<h1>✓ Email confirmed</h1><p>Your email is verified. Open the KidSense app and sign in to get started.</p>'; }
@@ -55,13 +60,21 @@
     }
     function errored() { done = true; el.innerHTML = '<h1>Link expired</h1><p>This link is no longer valid. Request a new one from the KidSense app.</p>'; }
 
-    if (hash.get('error') || type === null && location.hash === '') { /* wait for event/timeout */ }
-    supabase.auth.onAuthStateChange((event) => {
-      if (done) return;
-      if (event === 'PASSWORD_RECOVERY' || type === 'recovery') resetForm();
-      else if (event === 'SIGNED_IN' || type === 'signup' || type === 'email_change' || type === 'email') confirmed();
-    });
-    setTimeout(() => { if (done) return; if (hash.get('error')) errored(); else if (type === 'recovery') resetForm(); else confirmed(); }, 1800);
+    (async () => {
+      // token_hash path: verify the OTP right here to establish a browser session.
+      if (tokenHash && type) {
+        const { error } = await supabase.auth.verifyOtp({ token_hash: tokenHash, type });
+        if (error) return errored();
+        return type === 'recovery' ? resetForm() : confirmed();
+      }
+      // Legacy fallback (implicit hash / auth event) for links that still redirect here.
+      supabase.auth.onAuthStateChange((event) => {
+        if (done) return;
+        if (event === 'PASSWORD_RECOVERY' || type === 'recovery') resetForm();
+        else if (event === 'SIGNED_IN' || type === 'signup' || type === 'email_change' || type === 'email') confirmed();
+      });
+      setTimeout(() => { if (done) return; if (hash.get('error')) errored(); else if (type === 'recovery') resetForm(); else confirmed(); }, 1800);
+    })();
   </script>
 </body>
 </html>
