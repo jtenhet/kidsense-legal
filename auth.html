@@ -48,11 +48,13 @@
     function confirmed() { done = true; el.innerHTML = '<h1>✓ Email confirmed</h1><p>Your email is verified. Open the KidSense app and sign in to get started.</p>'; }
     function resetForm() {
       done = true;
-      el.innerHTML = '<h1>Set a new password</h1><input id="pw" type="password" placeholder="New password" autocomplete="new-password"><button id="save">Update password</button><p class="msg" id="msg"></p>';
+      el.innerHTML = '<h1>Set a new password</h1><input id="pw" type="password" placeholder="New password" autocomplete="new-password"><input id="pw2" type="password" placeholder="Confirm password" autocomplete="new-password"><button id="save">Update password</button><p class="msg" id="msg"></p>';
       const msg = document.getElementById('msg');
       document.getElementById('save').onclick = async () => {
         const pw = document.getElementById('pw').value;
+        const pw2 = document.getElementById('pw2').value;
         if (pw.length < 6) { msg.className = 'msg err'; msg.textContent = 'Use at least 6 characters.'; return; }
+        if (pw !== pw2) { msg.className = 'msg err'; msg.textContent = "Passwords don't match."; return; }
         const { error } = await supabase.auth.updateUser({ password: pw });
         if (error) { msg.className = 'msg err'; msg.textContent = error.message; }
         else { msg.className = 'msg ok'; msg.textContent = '✓ Password updated — open KidSense and sign in.'; }
