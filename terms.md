@@ -1,31 +1,31 @@
-# KidSense Terms of Service
+# KinSense Terms of Service
 
 **Effective: June 30, 2026**
 
-By using KidSense you agree to these terms. Please read them, especially the medical disclaimer. KidSense
+By using KinSense you agree to these terms. Please read them, especially the medical disclaimer. KinSense
 is operated by **TenhetApp** (contact: **info@tenhetapp.com**).
 
-## 1. What KidSense is
+## 1. What KinSense is
 
-KidSense is a tool for adults to **log and get reminders about** a child's daily care (medications,
+KinSense is a tool for adults to **log and get reminders about** a child's daily care (medications,
 bathroom events, routines, notes), shared among the caregivers you invite.
 
 ## 2. Not medical advice
 
-KidSense is **not a medical device and does not provide medical advice, diagnosis, or treatment.** It does
+KinSense is **not a medical device and does not provide medical advice, diagnosis, or treatment.** It does
 not recommend, calculate, or verify medication doses — it only records what you enter. Always rely on your
 child's healthcare provider for medical decisions, and call your provider or emergency services for medical
 concerns. You are responsible for the accuracy of what you log and for your caregiving decisions.
 
 ## 3. Your account & circle
 
-You must be an adult to use KidSense. Keep your login secure. You're responsible for who you invite to a
+You must be an adult to use KinSense. Keep your login secure. You're responsible for who you invite to a
 child's circle and for the activity under your account. Invite only people you trust to view and log that
 child's care.
 
-## 4. KidSense Plus (subscriptions)
+## 4. KinSense Plus (subscriptions)
 
-KidSense offers an auto-renewing subscription, **KidSense Plus** ($6.99/month or $49.99/year, with a 7-day
+KinSense offers an auto-renewing subscription, **KinSense Plus** ($6.99/month or $49.99/year, with a 7-day
 free trial on the annual plan; prices may vary by region). Subscriptions are billed through your Apple ID.
 Payment is charged at confirmation of purchase. It renews automatically unless canceled at least 24 hours
 before the period ends. Manage or cancel in your App Store account settings. Free trials convert to paid
@@ -56,7 +56,7 @@ in the prior 12 months.
 
 ## 9. Termination
 
-You may stop using KidSense and delete your account anytime. We may suspend accounts that violate these
+You may stop using KinSense and delete your account anytime. We may suspend accounts that violate these
 terms.
 
 ## 10. Governing law

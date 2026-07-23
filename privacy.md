@@ -1,18 +1,18 @@
-# KidSense Privacy Policy
+# KinSense Privacy Policy
 
 **Effective: June 30, 2026**
 
-KidSense is a shared caregiving log that lets the adults caring for a child track medications, bathroom
+KinSense is a shared caregiving log that lets the adults caring for a child track medications, bathroom
 events, routines, and notes together. This policy explains what we collect and why. We do **not** sell your
 data, show ads, or track you across other apps.
 
-## Who runs KidSense
+## Who runs KinSense
 
-KidSense is operated by **TenhetApp**. Contact: **info@tenhetapp.com**.
+KinSense is operated by **TenhetApp**. Contact: **info@tenhetapp.com**.
 
-## Who uses KidSense
+## Who uses KinSense
 
-KidSense is for **adults** (parents, guardians, and the caregivers they invite). The account holder is an
+KinSense is for **adults** (parents, guardians, and the caregivers they invite). The account holder is an
 adult. A child is a *subject* you track — children do not create accounts or use the app themselves.
 
 ## What we collect
@@ -24,7 +24,7 @@ adult. A child is a *subject* you track — children do not create accounts or u
   recorded each one and when.
 - **Device token & timezone:** if you enable reminders, your device's push token and time zone, so
   notifications arrive at the right local time.
-- **Subscription status:** whether you have KidSense Plus (via our payments processor).
+- **Subscription status:** whether you have KinSense Plus (via our payments processor).
 
 We do not collect location, contacts, advertising identifiers, or analytics that identify you.
 
@@ -62,7 +62,7 @@ This permanently removes your account, the children you own, and all of their lo
 
 ## Not medical advice
 
-KidSense is a logging and reminder tool. It does not provide medical advice, diagnosis, or treatment, and
+KinSense is a logging and reminder tool. It does not provide medical advice, diagnosis, or treatment, and
 never recommends or calculates doses. Always follow your healthcare provider's instructions.
 
 ## Changes

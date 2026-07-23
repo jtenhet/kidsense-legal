@@ -1,6 +1,6 @@
-# KidSense Legal
+# KinSense Legal
 
-Privacy policy and terms of service for **KidSense** — the shared caregiver log for kids.
+Privacy policy and terms of service for **KinSense** — the shared caregiver log for kids.
 
 - [Privacy Policy](./privacy.html)
 - [Terms of Service](./terms.html)

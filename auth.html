@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>KidSense</title>
+  <title>KinSense</title>
   <style>
     :root { --blue:#2F6BFF; }
     * { box-sizing:border-box; }
@@ -25,7 +25,7 @@
 </head>
 <body>
   <div class="card">
-    <div class="header"><div class="name">KidSense</div><div class="tag">A shared care log for your kids</div></div>
+    <div class="header"><div class="name">KinSense</div><div class="tag">A shared care log for your kids</div></div>
     <div class="body" id="content"><p>One moment…</p></div>
   </div>
   <script type="module">
@@ -45,7 +45,7 @@
     const type = query.get('type') || hash.get('type');
     let done = false;
 
-    function confirmed() { done = true; el.innerHTML = '<h1>✓ Email confirmed</h1><p>Your email is verified. Open the KidSense app and sign in to get started.</p>'; }
+    function confirmed() { done = true; el.innerHTML = '<h1>✓ Email confirmed</h1><p>Your email is verified. Open the KinSense app and sign in to get started.</p>'; }
     function resetForm() {
       done = true;
       el.innerHTML = '<h1>Set a new password</h1><input id="pw" type="password" placeholder="New password" autocomplete="new-password"><input id="pw2" type="password" placeholder="Confirm password" autocomplete="new-password"><button id="save">Update password</button><p class="msg" id="msg"></p>';
@@ -57,10 +57,10 @@
         if (pw !== pw2) { msg.className = 'msg err'; msg.textContent = "Passwords don't match."; return; }
         const { error } = await supabase.auth.updateUser({ password: pw });
         if (error) { msg.className = 'msg err'; msg.textContent = error.message; }
-        else { msg.className = 'msg ok'; msg.textContent = '✓ Password updated — open KidSense and sign in.'; }
+        else { msg.className = 'msg ok'; msg.textContent = '✓ Password updated — open KinSense and sign in.'; }
       };
     }
-    function errored() { done = true; el.innerHTML = '<h1>Link expired</h1><p>This link is no longer valid. Request a new one from the KidSense app.</p>'; }
+    function errored() { done = true; el.innerHTML = '<h1>Link expired</h1><p>This link is no longer valid. Request a new one from the KinSense app.</p>'; }
 
     (async () => {
       // token_hash path: verify the OTP right here to establish a browser session.

@@ -1,8 +1,8 @@
-# Delete your KidSense account
+# Delete your KinSense account
 
-You can permanently delete your KidSense account and data from inside the app — no need to contact us.
+You can permanently delete your KinSense account and data from inside the app — no need to contact us.
 
-1. Open **KidSense** on your iPhone.
+1. Open **KinSense** on your iPhone.
 2. Go to the **Settings** (gear icon, top-right of the Home screen).
 3. Scroll to the bottom and tap **Delete Account**.
 4. Confirm.
